@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CouponAPI.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221215195347_AddTablesToDB")]
+    [Migration("20230208190756_AddTablesToDB")]
     partial class AddTablesToDB
     {
         /// <inheritdoc />
@@ -51,14 +51,14 @@ namespace CouponAPI.DAL.Migrations
                         {
                             CouponId = 1,
                             CouponCode = "05OGA",
-                            DateTimeCreateCoupon = new DateTime(2022, 12, 15, 22, 53, 47, 456, DateTimeKind.Local).AddTicks(1366),
+                            DateTimeCreateCoupon = new DateTime(2023, 2, 8, 22, 7, 56, 98, DateTimeKind.Local).AddTicks(5127),
                             DiscountAmount = 5m
                         },
                         new
                         {
                             CouponId = 2,
                             CouponCode = "09OGA",
-                            DateTimeCreateCoupon = new DateTime(2022, 12, 15, 22, 53, 47, 456, DateTimeKind.Local).AddTicks(1398),
+                            DateTimeCreateCoupon = new DateTime(2023, 2, 8, 22, 7, 56, 98, DateTimeKind.Local).AddTicks(5153),
                             DiscountAmount = 9m
                         });
                 });

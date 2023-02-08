@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CouponAPI.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221215195625_AddeWatchDog")]
-    partial class AddeWatchDog
+    [Migration("20230208190850_AddWatchDog")]
+    partial class AddWatchDog
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,14 +51,14 @@ namespace CouponAPI.DAL.Migrations
                         {
                             CouponId = 1,
                             CouponCode = "05OGA",
-                            DateTimeCreateCoupon = new DateTime(2022, 12, 15, 22, 56, 25, 197, DateTimeKind.Local).AddTicks(9098),
+                            DateTimeCreateCoupon = new DateTime(2023, 2, 8, 22, 8, 50, 203, DateTimeKind.Local).AddTicks(497),
                             DiscountAmount = 5m
                         },
                         new
                         {
                             CouponId = 2,
                             CouponCode = "09OGA",
-                            DateTimeCreateCoupon = new DateTime(2022, 12, 15, 22, 56, 25, 197, DateTimeKind.Local).AddTicks(9131),
+                            DateTimeCreateCoupon = new DateTime(2023, 2, 8, 22, 8, 50, 203, DateTimeKind.Local).AddTicks(526),
                             DiscountAmount = 9m
                         });
                 });

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CouponAPI.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class AddeWatchDog : Migration
+    public partial class AddWatchDog : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,14 +16,14 @@ namespace CouponAPI.DAL.Migrations
                 keyColumn: "CouponId",
                 keyValue: 1,
                 column: "DateTimeCreateCoupon",
-                value: new DateTime(2022, 12, 15, 22, 56, 25, 197, DateTimeKind.Local).AddTicks(9098));
+                value: new DateTime(2023, 2, 8, 22, 8, 50, 203, DateTimeKind.Local).AddTicks(497));
 
             migrationBuilder.UpdateData(
                 table: "Coupons",
                 keyColumn: "CouponId",
                 keyValue: 2,
                 column: "DateTimeCreateCoupon",
-                value: new DateTime(2022, 12, 15, 22, 56, 25, 197, DateTimeKind.Local).AddTicks(9131));
+                value: new DateTime(2023, 2, 8, 22, 8, 50, 203, DateTimeKind.Local).AddTicks(526));
         }
 
         /// <inheritdoc />
@@ -34,14 +34,14 @@ namespace CouponAPI.DAL.Migrations
                 keyColumn: "CouponId",
                 keyValue: 1,
                 column: "DateTimeCreateCoupon",
-                value: new DateTime(2022, 12, 15, 22, 53, 47, 456, DateTimeKind.Local).AddTicks(1366));
+                value: new DateTime(2023, 2, 8, 22, 7, 56, 98, DateTimeKind.Local).AddTicks(5127));
 
             migrationBuilder.UpdateData(
                 table: "Coupons",
                 keyColumn: "CouponId",
                 keyValue: 2,
                 column: "DateTimeCreateCoupon",
-                value: new DateTime(2022, 12, 15, 22, 53, 47, 456, DateTimeKind.Local).AddTicks(1398));
+                value: new DateTime(2023, 2, 8, 22, 7, 56, 98, DateTimeKind.Local).AddTicks(5153));
         }
     }
 }

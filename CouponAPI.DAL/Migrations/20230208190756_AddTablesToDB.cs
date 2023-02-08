@@ -34,8 +34,8 @@ namespace CouponAPI.DAL.Migrations
                 columns: new[] { "CouponId", "CouponCode", "DateTimeCreateCoupon", "DiscountAmount" },
                 values: new object[,]
                 {
-                    { 1, "05OGA", new DateTime(2022, 12, 15, 22, 53, 47, 456, DateTimeKind.Local).AddTicks(1366), 5m },
-                    { 2, "09OGA", new DateTime(2022, 12, 15, 22, 53, 47, 456, DateTimeKind.Local).AddTicks(1398), 9m }
+                    { 1, "05OGA", new DateTime(2023, 2, 8, 22, 7, 56, 98, DateTimeKind.Local).AddTicks(5127), 5m },
+                    { 2, "09OGA", new DateTime(2023, 2, 8, 22, 7, 56, 98, DateTimeKind.Local).AddTicks(5153), 9m }
                 });
         }
 
