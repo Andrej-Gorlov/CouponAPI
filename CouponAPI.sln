@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CouponAPI", "CouponAPI\CouponAPI.csproj", "{DC3E3BBD-A227-42D6-8782-365BDFF8BAF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{E3DB1892-1589-4637-9220-5C5034CBF1C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{3775DBFD-1166-47D8-B281-54D965F8A5B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{882CB7F9-5845-4164-876C-BDDB04621973}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CouponAPI.DAL", "CouponAPI.DAL\CouponAPI.DAL.csproj", "{EB4267E1-8B09-4C7C-AB4F-700E7C378D4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CouponAPI.Domain", "CouponAPI.Domain\CouponAPI.Domain.csproj", "{1E9BE3FA-F6A9-4809-99C9-ADC7768A1A51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CouponAPI.Service", "CouponAPI.Service\CouponAPI.Service.csproj", "{DA807078-8F70-4EC0-9282-67A2F2EE4F64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC3E3BBD-A227-42D6-8782-365BDFF8BAF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC3E3BBD-A227-42D6-8782-365BDFF8BAF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC3E3BBD-A227-42D6-8782-365BDFF8BAF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC3E3BBD-A227-42D6-8782-365BDFF8BAF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB4267E1-8B09-4C7C-AB4F-700E7C378D4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB4267E1-8B09-4C7C-AB4F-700E7C378D4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB4267E1-8B09-4C7C-AB4F-700E7C378D4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB4267E1-8B09-4C7C-AB4F-700E7C378D4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E9BE3FA-F6A9-4809-99C9-ADC7768A1A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E9BE3FA-F6A9-4809-99C9-ADC7768A1A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E9BE3FA-F6A9-4809-99C9-ADC7768A1A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E9BE3FA-F6A9-4809-99C9-ADC7768A1A51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA807078-8F70-4EC0-9282-67A2F2EE4F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA807078-8F70-4EC0-9282-67A2F2EE4F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA807078-8F70-4EC0-9282-67A2F2EE4F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA807078-8F70-4EC0-9282-67A2F2EE4F64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EB4267E1-8B09-4C7C-AB4F-700E7C378D4A} = {E3DB1892-1589-4637-9220-5C5034CBF1C6}
+		{1E9BE3FA-F6A9-4809-99C9-ADC7768A1A51} = {3775DBFD-1166-47D8-B281-54D965F8A5B8}
+		{DA807078-8F70-4EC0-9282-67A2F2EE4F64} = {882CB7F9-5845-4164-876C-BDDB04621973}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01483983-3DC2-443E-A273-A0A4C80552E3}
+	EndGlobalSection
+EndGlobal
