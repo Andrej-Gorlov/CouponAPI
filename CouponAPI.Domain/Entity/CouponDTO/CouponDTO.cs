@@ -1,10 +1,17 @@
 ﻿namespace CouponAPI.Domain.Entity.CouponDTO
 {
-    public class CouponDTO
+    public record struct CouponDTO
     {
-        public int CouponId { get; set; }
-        public string? CouponCode { get; set; }
-        public decimal DiscountAmount { get; set; }
-        public DateTime DateTimeCreateCoupon { get; set; } 
+        public CouponDTO(int couponId, string couponCode, decimal discountAmount, DateTime dateTimeCreateCoupon)
+        {
+            CouponId = couponId;
+            CouponCode = couponCode;
+            DiscountAmount = discountAmount;
+            DateTimeCreateCoupon = dateTimeCreateCoupon;
+        }
+        public int CouponId { get; init; }
+        public string CouponCode { get; init; }
+        public decimal DiscountAmount { get; init; }
+        public DateTime DateTimeCreateCoupon { get; init; } 
     }
 }

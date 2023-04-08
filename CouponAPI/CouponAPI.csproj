@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-	 <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	 <NoWarn>$(NoWarn);1591</NoWarn>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<NoWarn>$(NoWarn);1591</NoWarn>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -17,7 +17,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="WatchDog.NET" Version="1.4.6" />
   </ItemGroup>
 
   <ItemGroup>
