@@ -1,13 +1,22 @@
 using CouponAPI.DAL;
 using CouponAPI.Extensions;
 using CouponAPI.Middleware.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(option =>
+{
+    option.CacheProfiles.Add("Default30",
+        new CacheProfile()
+        {
+            Duration = 30// кешируем на 30 сек
+        });
+}).AddNewtonsoftJson().AddXmlDataContractSerializerFormatters();
+
 builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();

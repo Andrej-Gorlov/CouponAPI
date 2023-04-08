@@ -25,6 +25,7 @@ namespace CouponAPI.Controllers
         /// </remarks>
         /// <response code="200"> Запрос прошёл. (Успех) </response>
         [HttpGet]
+        [ResponseCache(CacheProfileName = "Default30")]
         [Route("coupons")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<CouponDTO>>> Get()
@@ -48,6 +49,7 @@ namespace CouponAPI.Controllers
         /// </remarks>
         /// <response code="200"> Запрос прошёл. (Успех) </response>
         [HttpGet]
+        [ResponseCache(Duration = 120)]
         [Route("coupon/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<CouponDTO>> GetById(int id)
