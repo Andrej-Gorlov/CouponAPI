@@ -1,12 +1,13 @@
-﻿using CouponAPI.Domain.Entity.CouponDTO;
+﻿using CouponAPI.Domain;
+using CouponAPI.Domain.Entity.CouponDTO;
 
 namespace CouponAPI.Service.Implementations
 {
     public class GetServiceAsync
     {
-        public class Query : IRequest<List<CouponDTO>> { }
+        public class Query : IRequest<IBaseResponse<List<CouponDTO>>> { }
 
-        public class Handler : IRequestHandler<Query, List<CouponDTO>>
+        public class Handler : IRequestHandler<Query, IBaseResponse<List<CouponDTO>>>
         {
             private readonly ApplicationDbContext _context;
 
@@ -21,10 +22,12 @@ namespace CouponAPI.Service.Implementations
                 _context = context;
             }
 
-            public async Task<List<CouponDTO>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<IBaseResponse<List<CouponDTO>>> Handle(Query request, CancellationToken cancellationToken)
             {
+                var response = new BaseResponse<List<CouponDTO>>();
+                response.Result = _mapper.Map<List<CouponDTO>>(await _context.Coupons.ToListAsync());
                 _logger.LogInformation("возврат всеx купонов.");
-                return _mapper.Map<List<CouponDTO>>(await _context.Coupons.ToListAsync());
+                return response;
             }
         }
     }

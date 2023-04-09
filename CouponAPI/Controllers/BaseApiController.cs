@@ -8,9 +8,9 @@ namespace CouponAPI.Controllers
     [ApiController]
     public class BaseApiController : ControllerBase
     {
-        private IMediator _mediator;
+        private IMediator? _mediator;
 
-        protected IMediator Mediator => _mediator ??=
+        protected IMediator? Mediator => _mediator ??=
             HttpContext.RequestServices.GetService<IMediator>();
     }
 }

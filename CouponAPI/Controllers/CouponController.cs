@@ -31,7 +31,7 @@ namespace CouponAPI.Controllers
         public async Task<ActionResult<List<CouponDTO>>> Get()
         {
             _logger.LogInformation($"Ответ отправлен. статус: {Ok().StatusCode} /CouponController/method: Get");
-            return await Mediator.Send(new GetServiceAsync.Query());
+            return Ok( await Mediator.Send(new GetServiceAsync.Query()));
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace CouponAPI.Controllers
         public async Task<ActionResult<CouponDTO>> GetById(int id)
         {
             _logger.LogInformation($"Ответ отправлен. статус: {Ok().StatusCode} /CouponController/method: GetById");
-            return await Mediator.Send(new GetByIdServiceAsync.Query { Id = id });
+            return Ok( await Mediator.Send(new GetByIdServiceAsync.Query { Id = id }));
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace CouponAPI.Controllers
         public async Task<IActionResult> Create(CreateCouponDTO coupon)
         {
             _logger.LogInformation($"Ответ отправлен. Cтатус: 201 /CouponController/method: Create");
-            return CreatedAtAction(nameof(Get), await Mediator.Send(new CreateServiceAsync.Command { Coupon = coupon }));
+            return CreatedAtAction( nameof(Get), await Mediator.Send(new CreateServiceAsync.Command { Coupon = coupon }));
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace CouponAPI.Controllers
         {
             coupon.CouponId = id;
             _logger.LogInformation($"Ответ отправлен. статус: {Ok().StatusCode} /CouponController/method: Update");
-            return Ok(await Mediator.Send(new UpdateServiceAsync.Command { Coupon = coupon }));
+            return Ok( await Mediator.Send(new UpdateServiceAsync.Command { Coupon = coupon }));
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace CouponAPI.Controllers
         public async Task<ActionResult> Delete(int id)
         {
             _logger.LogInformation($"Ответ отправлен. статус: {Ok().StatusCode} /CouponController/method: Delete");
-            return Ok(await Mediator.Send(new DeleteServiceAsync.Command { Id = id }));
+            return Ok( await Mediator.Send(new DeleteServiceAsync.Command { Id = id }));
         }
     }
 }
