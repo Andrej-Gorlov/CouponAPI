@@ -1,15 +1,12 @@
-﻿using CouponAPI.Domain.Entity.CouponDTO;
-
-namespace CouponAPI.Service.Implementations
+﻿namespace CouponAPI.Service.Implementations
 {
     public class CreateServiceAsync
     {
-        public class Command : IRequest
+        public class Command : IRequest<IBaseResponse<Unit>>
         {
             public CreateCouponDTO? Coupon { get; set; }
         }
-
-        public class Handler : IRequestHandler<Command>
+        public class Handler : IRequestHandler<Command, IBaseResponse<Unit>>
         {
             private readonly ApplicationDbContext _context;
 
@@ -24,15 +21,20 @@ namespace CouponAPI.Service.Implementations
                 _mapper = mapper;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<IBaseResponse<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 _logger.LogInformation("добавление купона.");
                 _context.Coupons.Add(_mapper.Map<Coupon>(request.Coupon));
 
                 _logger.LogInformation("сохранение изменений в бд.");
-                await _context.SaveChangesAsync();
-
-                return Unit.Value;
+                var result = await _context.SaveChangesAsync() > 0;
+                if (!result)
+                {
+                    _logger.LogInformation("Количество записей состояния, записанных в базу данных равен нулю" +
+                        "Не удалось создать купон (class: CreateServiceAsync/method: Handle).");
+                    return new BaseResponse<Unit>().Failure("Не удалось создать купон.");
+                }
+                return new BaseResponse<Unit>().Success(Unit.Value, ResponseStatus.Created);
             }
         }
     }

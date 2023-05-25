@@ -6,8 +6,15 @@ namespace CouponAPI.Middleware.CustomException
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
+        public ILogger<ErrorHandlerMiddleware> _logger { get; }
+        private readonly IHostEnvironment _env;
 
-        public ErrorHandlerMiddleware(RequestDelegate next) => _next = next;
+        public ErrorHandlerMiddleware(RequestDelegate next, ILogger<ErrorHandlerMiddleware> logger, IHostEnvironment env)
+        { 
+            _next = next;
+            _logger = logger;
+            _env = env;
+        }
 
         public async Task InvokeAsync(HttpContext context)
         {
@@ -17,29 +24,19 @@ namespace CouponAPI.Middleware.CustomException
             }
             catch (Exception error)
             {
-                var response = context.Response;
-                response.ContentType = "application/json";
-                switch (error)
-                {
-                    case AppException ex:
-                        // Ошибка пользовательского приложения.
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        break;
-                    case KeyNotFoundException ex:
-                        // Не найден.
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
-                        break;
-                    case UnauthorizedAccessException ex:
-                        // Не авторизован.
-                        response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                        break;
-                    default:
-                        // Необработанная ошибка
-                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        break;
-                }
-                var result = JsonSerializer.Serialize(new { message = error?.Message });
-                await response.WriteAsync(result);
+                _logger.LogError(error, error.Message);
+                context.Response.ContentType = "application/json";
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+                var response = _env.IsDevelopment()
+                    ? new AppException(context.Response.StatusCode, error.Message, error.StackTrace?.ToString())
+                    : new AppException(context.Response.StatusCode, "Internal Server Error");
+
+                var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+
+                var json = JsonSerializer.Serialize(response, options);
+
+                await context.Response.WriteAsync(json);
             }
         }
     }

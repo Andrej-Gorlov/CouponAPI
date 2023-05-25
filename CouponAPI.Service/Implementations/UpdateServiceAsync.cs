@@ -1,15 +1,13 @@
-﻿using CouponAPI.Domain.Entity.CouponDTO;
-
-namespace CouponAPI.Service.Implementations
+﻿namespace CouponAPI.Service.Implementations
 {
     public class UpdateServiceAsync
     {
-        public class Command : IRequest
+        public class Command : IRequest<IBaseResponse<Unit>>
         {
             public UpdateCouponDTO? Coupon { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command>
+        public class Handler : IRequestHandler<Command, IBaseResponse<Unit>?>
         {
             private readonly ApplicationDbContext _context;
 
@@ -23,18 +21,28 @@ namespace CouponAPI.Service.Implementations
                 _logger = logger;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<IBaseResponse<Unit>?> Handle(Command request, CancellationToken cancellationToken)
             {
                 _logger.LogInformation("поиск купона по id.");
                 var coupon = await _context.Coupons.FindAsync(request.Coupon.CouponId);
-
+                if (coupon is null)
+                {
+                    _logger.LogInformation("купон не найден (class: UpdateServiceAsync/method: Handle).");
+                    return null;
+                }
                 _logger.LogInformation("применение mapper.");
                 _mapper.Map(request.Coupon, coupon);
 
                 _logger.LogInformation("сохранение изменений в бд.");
-                await _context.SaveChangesAsync();
+                var result = await _context.SaveChangesAsync() > 0;
+                if (!result)
+                {
+                    _logger.LogInformation("Количество записей состояния, записанных в базу данных равен нулю" +
+                        "Не удалось создать купон (class: UpdateServiceAsync/method: Handle).");
+                    return new BaseResponse<Unit>().Failure("Не удалось удалить купон.");
+                }
 
-                return Unit.Value;
+                return new BaseResponse<Unit>().Success(Unit.Value, ResponseStatus.Ok);
             }
         }
     }

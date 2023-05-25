@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using CouponAPI.Domain.Entity;
-using CouponAPI.Domain.Entity.CouponDTO;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace CouponAPI
+﻿namespace CouponAPI
 {
     public class MappingProfiles : Profile
     {

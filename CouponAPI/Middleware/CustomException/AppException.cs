@@ -1,14 +1,16 @@
-﻿using System.Globalization;
-
-namespace CouponAPI.Middleware.CustomException
+﻿namespace CouponAPI.Middleware.CustomException
 {
-    public class AppException : Exception
+    public class AppException 
     {
-        public AppException() : base() { }
-        public AppException(string message) : base(message) { }
-        public AppException(string message, params object[] args)
-            : base(String.Format(CultureInfo.CurrentCulture, message, args))
+        public AppException(int statusCode, string message, string? details = null)
         {
+            StatusCode = statusCode;
+            Message = message;
+            Details = details;
         }
+
+        public int StatusCode { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public string Details { get; set; } = string.Empty;
     }
 }

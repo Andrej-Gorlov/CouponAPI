@@ -10,8 +10,8 @@
             DateTimeCreateCoupon = dateTimeCreateCoupon;
         }
         public int CouponId { get; init; }
-        public string CouponCode { get; init; }
+        public string CouponCode { get; init; } = string.Empty;
         public decimal DiscountAmount { get; init; }
-        public DateTime DateTimeCreateCoupon { get; init; } 
+        public DateTime DateTimeCreateCoupon { get; init; }
     }
 }

@@ -1,7 +1,4 @@
-﻿using CouponAPI.Domain;
-using CouponAPI.Domain.Entity.CouponDTO;
-
-namespace CouponAPI.Service.Implementations
+﻿namespace CouponAPI.Service.Implementations
 {
     public class GetByIdServiceAsync
     {
@@ -10,7 +7,7 @@ namespace CouponAPI.Service.Implementations
             public int Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, IBaseResponse<CouponDTO>>
+        public class Handler : IRequestHandler<Query, IBaseResponse<CouponDTO>?>
         {
             private readonly ApplicationDbContext _context;
 
@@ -22,14 +19,19 @@ namespace CouponAPI.Service.Implementations
             {
                 _context = context;
                 _logger = logger;
+                _mapper = mapper;
             }
 
-            public async Task<IBaseResponse<CouponDTO>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<IBaseResponse<CouponDTO>?> Handle(Query request, CancellationToken cancellationToken)
             {
-                var response = new BaseResponse<CouponDTO>();
-                response.Result = _mapper.Map<CouponDTO>(await _context.Coupons.FindAsync(request.Id));
+                var coupon = _mapper.Map<CouponDTO>(await _context.Coupons.FindAsync(request.Id));
+                if (coupon.CouponId <= 0)
+                {
+                    _logger.LogInformation("купон не найден (class: GetByIdServiceAsync/method: Handle).");
+                    return null;
+                }
                 _logger.LogInformation("возврат купона по id.");
-                return response;
+                return new BaseResponse<CouponDTO>().Success(coupon, ResponseStatus.Ok);
             }
         }
     }
